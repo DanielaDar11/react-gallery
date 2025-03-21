@@ -28,16 +28,14 @@
     gap:10px;
 
 }
-.butoanele button{
-    background-color:rgb(0, 48, 10);
-    color:wheat;
+.butoanele img{
     padding:10px;
     font-size: 15px;
     border-radius:5px;
 }
 
 .butoanele button:hover{
-    background-color:rgb(22, 102, 39);
+    background-color:rgb(131, 244, 155);
 }
 h1 {
     text-align:center;

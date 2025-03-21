@@ -1,6 +1,13 @@
 import React from "react";
 import images from './data/images.json';
 import {useState} from 'react';
+import next from './assets/next.svg';
+import previous from './assets/previous.svg';
+import random1 from './assets/random1.svg';
+import random2 from './assets/random2.svg';
+import Buton from './components/Buton'
+import Galeria from "./components/Galeria";
+import ImaginePrincipala from "./components/ImaginePrincipala";
 
 function App() {
     const [imagine, setImagine]=useState(0);
@@ -19,22 +26,25 @@ function App() {
    }
     function aranjareAleatoare(){
         setListaImagini([...listaImagini].sort(()=>Math.random()-0.5));
-         setImagine(0);
+    }
+
+    function seteazaImagine(i){
+        setImagine(i);
     }
     return (
     <>
     <h1>Imagini cu pisici</h1>
-    <div className="oimagine"><img src={listaImagini[imagine].url}/></div>
+    <div className="oimagine">
+        <ImaginePrincipala lista={listaImagini} i={imagine}/>
+    </div>
     <div className="butoanele">
-        <button onClick={urmatoareaImagine}>Următoarea imagine</button>
-        <button onClick={imagineAnterioara}>Imaginea Anterioară</button>
-        <button onClick={imagineAleatoare}>Imagine Aleatoare</button>
-        <button onClick={aranjareAleatoare}>Aranjare Aleatoare</button>
+        <Buton func={urmatoareaImagine} imaginea={next}/>
+        <Buton func={imagineAnterioara} imaginea={previous}/>
+        <Buton func={imagineAleatoare} imaginea={random1}/>
+        <Buton func={aranjareAleatoare} imaginea={random2}/>
     </div>
     <div className="container">
-       {listaImagini.map((el, index)=>{
-       return  <img key={el.id} src={el.url} alt={el.title}  className={index===imagine?'selectat':''}/>
-       })}
+       <Galeria listaIMG={listaImagini} im={seteazaImagine} imagine={imagine} />
     </div>
     </>);
 }
